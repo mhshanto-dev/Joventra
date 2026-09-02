@@ -39,6 +39,7 @@ import { ManageUsersPage } from './pages/admin/ManageUsersPage';
 import { ManageCompaniesPage } from './pages/admin/ManageCompaniesPage';
 import { ManageAdminJobsPage } from './pages/admin/ManageAdminJobsPage';
 import { AdminPaymentsPage } from './pages/admin/AdminPaymentsPage';
+import { AdminSettingsPage } from './pages/admin/AdminSettingsPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -98,7 +99,7 @@ export default function App() {
           <Route path="companies" element={<ManageCompaniesPage />} />
           <Route path="jobs" element={<ManageAdminJobsPage />} />
           <Route path="payments" element={<AdminPaymentsPage />} />
-          <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Admin Settings</div>} />
+          <Route path="settings" element={<AdminSettingsPage />} />
         </Route>
       </Route>
 
