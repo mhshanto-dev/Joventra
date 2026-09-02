@@ -21,6 +21,7 @@ import { SeekerHomePage } from './pages/seeker/SeekerHomePage';
 import { SeekerJobsPage } from './pages/seeker/SeekerJobsPage';
 import { SavedJobsPage } from './pages/seeker/SavedJobsPage';
 import { ApplicationsPage } from './pages/seeker/ApplicationsPage';
+import { SeekerBillingPage } from './pages/seeker/SeekerBillingPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -54,7 +55,7 @@ export default function App() {
           <Route path="jobs" element={<SeekerJobsPage />} />
           <Route path="saved" element={<SavedJobsPage />} />
           <Route path="applications" element={<ApplicationsPage />} />
-          <Route path="billing" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Billing</div>} />
+          <Route path="billing" element={<SeekerBillingPage />} />
           <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Settings</div>} />
         </Route>
       </Route>
