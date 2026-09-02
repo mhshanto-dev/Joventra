@@ -18,6 +18,7 @@ import { RegisterPage } from './pages/auth/RegisterPage';
 
 // Seeker Pages
 import { SeekerHomePage } from './pages/seeker/SeekerHomePage';
+import { SeekerJobsPage } from './pages/seeker/SeekerJobsPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -48,7 +49,7 @@ export default function App() {
       <Route element={<ProtectedRoute allowedRoles={['seeker']} />}>
         <Route path="/dashboard/seeker" element={<DashboardLayout />}>
           <Route index element={<SeekerHomePage />} />
-          <Route path="jobs" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Browse & Apply</div>} />
+          <Route path="jobs" element={<SeekerJobsPage />} />
           <Route path="saved" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Saved Jobs</div>} />
           <Route path="applications" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Applications</div>} />
           <Route path="billing" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Billing</div>} />
