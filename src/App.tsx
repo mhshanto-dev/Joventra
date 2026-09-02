@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useAuthStore } from './stores/authStore';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { HomePage } from './pages/public/HomePage';
+import { BrowseJobsPage } from './pages/public/BrowseJobsPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -16,7 +17,7 @@ export default function App() {
       {/* Public Pages */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/jobs" element={<div className="p-8 text-center text-slate-500">Browse Jobs Page (Coming in next commit)</div>} />
+        <Route path="/jobs" element={<BrowseJobsPage />} />
         <Route path="/jobs/:jobId" element={<div className="p-8 text-center text-slate-500">Job Details Page</div>} />
         <Route path="/companies" element={<div className="p-8 text-center text-slate-500">Companies Directory Page</div>} />
         <Route path="/companies/:id" element={<div className="p-8 text-center text-slate-500">Company Profile Page</div>} />
