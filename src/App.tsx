@@ -24,6 +24,9 @@ import { ApplicationsPage } from './pages/seeker/ApplicationsPage';
 import { SeekerBillingPage } from './pages/seeker/SeekerBillingPage';
 import { SeekerSettingsPage } from './pages/seeker/SeekerSettingsPage';
 
+// Recruiter Pages
+import { RecruiterHomePage } from './pages/recruiter/RecruiterHomePage';
+
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
 
@@ -64,7 +67,7 @@ export default function App() {
       {/* Recruiter Dashboard Routes */}
       <Route element={<ProtectedRoute allowedRoles={['recruiter']} />}>
         <Route path="/dashboard/recruiter" element={<DashboardLayout />}>
-          <Route index element={<div className="p-8 text-center text-slate-500 font-bold">Recruiter Home Page</div>} />
+          <Route index element={<RecruiterHomePage />} />
           <Route path="company" element={<div className="p-8 text-center text-slate-500 font-bold">My Company</div>} />
           <Route path="jobs" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Jobs</div>} />
           <Route path="jobs/new" element={<div className="p-8 text-center text-slate-500 font-bold">Post a Job</div>} />
