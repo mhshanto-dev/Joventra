@@ -15,6 +15,7 @@ import { CompanyProfilePage } from './pages/public/CompanyProfilePage';
 import { PricingPage } from './pages/public/PricingPage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
+import { NotFoundPage } from './pages/public/NotFoundPage';
 
 // Seeker Pages
 import { SeekerHomePage } from './pages/seeker/SeekerHomePage';
@@ -104,7 +105,7 @@ export default function App() {
       </Route>
 
       {/* Fallback */}
-      <Route path="*" element={<div className="min-h-screen flex items-center justify-center text-slate-600">404 Not Found</div>} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
