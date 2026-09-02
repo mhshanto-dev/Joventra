@@ -29,6 +29,7 @@ import { RecruiterHomePage } from './pages/recruiter/RecruiterHomePage';
 import { MyCompanyPage } from './pages/recruiter/MyCompanyPage';
 import { ManageJobsPage } from './pages/recruiter/ManageJobsPage';
 import { PostJobPage } from './pages/recruiter/PostJobPage';
+import { ViewApplicantsPage } from './pages/recruiter/ViewApplicantsPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -74,7 +75,7 @@ export default function App() {
           <Route path="company" element={<MyCompanyPage />} />
           <Route path="jobs" element={<ManageJobsPage />} />
           <Route path="jobs/new" element={<PostJobPage />} />
-          <Route path="jobs/:jobId/applicants" element={<div className="p-8 text-center text-slate-500 font-bold">View Applicants</div>} />
+          <Route path="jobs/:jobId/applicants" element={<ViewApplicantsPage />} />
           <Route path="billing" element={<div className="p-8 text-center text-slate-500 font-bold">Recruiter Billing</div>} />
           <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Recruiter Settings</div>} />
         </Route>
