@@ -33,6 +33,9 @@ import { ViewApplicantsPage } from './pages/recruiter/ViewApplicantsPage';
 import { RecruiterBillingPage } from './pages/recruiter/RecruiterBillingPage';
 import { RecruiterSettingsPage } from './pages/recruiter/RecruiterSettingsPage';
 
+// Admin Pages
+import { AdminHomePage } from './pages/admin/AdminHomePage';
+
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
 
@@ -86,7 +89,7 @@ export default function App() {
       {/* Admin Dashboard Routes */}
       <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
         <Route path="/dashboard/admin" element={<DashboardLayout />}>
-          <Route index element={<div className="p-8 text-center text-slate-500 font-bold">Admin Home Page</div>} />
+          <Route index element={<AdminHomePage />} />
           <Route path="users" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Users</div>} />
           <Route path="companies" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Companies</div>} />
           <Route path="jobs" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Jobs</div>} />
