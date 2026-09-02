@@ -7,6 +7,7 @@ import { BrowseJobsPage } from './pages/public/BrowseJobsPage';
 import { JobDetailsPage } from './pages/public/JobDetailsPage';
 import { CompaniesPage } from './pages/public/CompaniesPage';
 import { CompanyProfilePage } from './pages/public/CompanyProfilePage';
+import { PricingPage } from './pages/public/PricingPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -24,7 +25,7 @@ export default function App() {
         <Route path="/jobs/:jobId" element={<JobDetailsPage />} />
         <Route path="/companies" element={<CompaniesPage />} />
         <Route path="/companies/:id" element={<CompanyProfilePage />} />
-        <Route path="/pricing" element={<div className="p-8 text-center text-slate-500">Pricing Page</div>} />
+        <Route path="/pricing" element={<PricingPage />} />
       </Route>
 
       {/* Fallback */}
