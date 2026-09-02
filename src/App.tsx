@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './stores/authStore';
 import { PublicLayout } from './components/layout/PublicLayout';
+import { DashboardLayout } from './components/layout/DashboardLayout';
+import { ProtectedRoute } from './components/shared/ProtectedRoute';
 import { PublicOnlyRoute } from './components/shared/PublicOnlyRoute';
+
+// Public Pages
 import { HomePage } from './pages/public/HomePage';
 import { BrowseJobsPage } from './pages/public/BrowseJobsPage';
 import { JobDetailsPage } from './pages/public/JobDetailsPage';
@@ -31,10 +35,47 @@ export default function App() {
         <Route path="/pricing" element={<PricingPage />} />
       </Route>
 
-      {/* Auth Pages (Only accessible when not logged in) */}
+      {/* Auth Pages */}
       <Route element={<PublicOnlyRoute />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+      </Route>
+
+      {/* Seeker Dashboard Routes */}
+      <Route element={<ProtectedRoute allowedRoles={['seeker']} />}>
+        <Route path="/dashboard/seeker" element={<DashboardLayout />}>
+          <Route index element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Home Page</div>} />
+          <Route path="jobs" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Browse & Apply</div>} />
+          <Route path="saved" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Saved Jobs</div>} />
+          <Route path="applications" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Applications</div>} />
+          <Route path="billing" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Billing</div>} />
+          <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Settings</div>} />
+        </Route>
+      </Route>
+
+      {/* Recruiter Dashboard Routes */}
+      <Route element={<ProtectedRoute allowedRoles={['recruiter']} />}>
+        <Route path="/dashboard/recruiter" element={<DashboardLayout />}>
+          <Route index element={<div className="p-8 text-center text-slate-500 font-bold">Recruiter Home Page</div>} />
+          <Route path="company" element={<div className="p-8 text-center text-slate-500 font-bold">My Company</div>} />
+          <Route path="jobs" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Jobs</div>} />
+          <Route path="jobs/new" element={<div className="p-8 text-center text-slate-500 font-bold">Post a Job</div>} />
+          <Route path="jobs/:jobId/applicants" element={<div className="p-8 text-center text-slate-500 font-bold">View Applicants</div>} />
+          <Route path="billing" element={<div className="p-8 text-center text-slate-500 font-bold">Recruiter Billing</div>} />
+          <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Recruiter Settings</div>} />
+        </Route>
+      </Route>
+
+      {/* Admin Dashboard Routes */}
+      <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+        <Route path="/dashboard/admin" element={<DashboardLayout />}>
+          <Route index element={<div className="p-8 text-center text-slate-500 font-bold">Admin Home Page</div>} />
+          <Route path="users" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Users</div>} />
+          <Route path="companies" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Companies</div>} />
+          <Route path="jobs" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Jobs</div>} />
+          <Route path="payments" element={<div className="p-8 text-center text-slate-500 font-bold">Payments & Subscriptions</div>} />
+          <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Admin Settings</div>} />
+        </Route>
       </Route>
 
       {/* Fallback */}
