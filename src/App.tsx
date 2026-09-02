@@ -4,6 +4,7 @@ import { useAuthStore } from './stores/authStore';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { HomePage } from './pages/public/HomePage';
 import { BrowseJobsPage } from './pages/public/BrowseJobsPage';
+import { JobDetailsPage } from './pages/public/JobDetailsPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -18,7 +19,7 @@ export default function App() {
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/jobs" element={<BrowseJobsPage />} />
-        <Route path="/jobs/:jobId" element={<div className="p-8 text-center text-slate-500">Job Details Page</div>} />
+        <Route path="/jobs/:jobId" element={<JobDetailsPage />} />
         <Route path="/companies" element={<div className="p-8 text-center text-slate-500">Companies Directory Page</div>} />
         <Route path="/companies/:id" element={<div className="p-8 text-center text-slate-500">Company Profile Page</div>} />
         <Route path="/pricing" element={<div className="p-8 text-center text-slate-500">Pricing Page</div>} />
