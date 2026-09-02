@@ -4,7 +4,7 @@ import { Briefcase, Heart, Shield, Globe, Mail, ArrowRight } from 'lucide-react'
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 pt-16 pb-12">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-slate-300 border-t border-slate-800 dark:border-slate-800/80 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
           
@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
                 <Briefcase className="w-5 h-5" />
               </div>
               <span className="text-2xl font-extrabold tracking-tight text-white">
-                Hire<span className="text-brand-400">Loop</span>
+                Joven<span className="text-brand-400">tra</span>
               </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} HireLoop (Joventra). All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Joventra. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
             Engineered with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for the modern workforce.
           </p>

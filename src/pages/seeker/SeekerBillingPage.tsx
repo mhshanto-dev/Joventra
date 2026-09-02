@@ -214,7 +214,9 @@ export const SeekerBillingPage: React.FC = () => {
 
         {isPaymentsLoading ? (
           <div className="space-y-2">
-            {[1, 2].map((n) => <div key={n} className="h-12 bg-slate-100 rounded-xl animate-pulse" />}
+            {[1, 2].map((n) => (
+              <div key={n} className="h-12 bg-slate-100 rounded-xl animate-pulse" />
+            ))}
           </div>
         ) : payments.length === 0 ? (
           <div className="text-center py-8 text-slate-400 text-xs">

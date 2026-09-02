@@ -11,7 +11,7 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('hireloop_token');
+  const token = localStorage.getItem('Joventra_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -27,13 +27,13 @@ apiClient.interceptors.response.use(
       try {
         const { data } = await axios.post(`${API_BASE_URL}/auth/refresh-token`, {}, { withCredentials: true });
         if (data.success && data.data?.token) {
-          localStorage.setItem('hireloop_token', data.data.token);
+          localStorage.setItem('Joventra_token', data.data.token);
           originalRequest.headers.Authorization = `Bearer ${data.data.token}`;
           return apiClient(originalRequest);
         }
       } catch (refreshError) {
-        localStorage.removeItem('hireloop_token');
-        localStorage.removeItem('hireloop_user');
+        localStorage.removeItem('Joventra_token');
+        localStorage.removeItem('Joventra_user');
         window.dispatchEvent(new Event('auth:logout'));
       }
     }

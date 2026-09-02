@@ -78,6 +78,7 @@ export interface Application {
   _id: string;
   id?: string;
   seekerId: User;
+  seekerProfileId?: any;
   jobId: Job;
   companyId: Company;
   coverLetter?: string;

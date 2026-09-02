@@ -97,7 +97,9 @@ export const ViewApplicantsPage: React.FC = () => {
       {/* Applicants List */}
       {isLoading ? (
         <div className="space-y-4">
-          {[1, 2, 3].map((n) => <div key={n} className="h-44 bg-slate-200/70 rounded-3xl animate-pulse" />}
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="h-44 bg-slate-200/70 rounded-3xl animate-pulse" />
+          ))}
         </div>
       ) : applicants.length === 0 ? (
         <div className="bg-white rounded-3xl border border-slate-200/90 p-12 text-center space-y-3">

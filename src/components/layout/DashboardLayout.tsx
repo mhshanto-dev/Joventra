@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
+import { ThemeToggle } from '../shared/ThemeToggle';
 import {
   Briefcase,
   Building2,
@@ -95,7 +96,7 @@ export const DashboardLayout: React.FC = () => {
               <Briefcase className="w-4 h-4" />
             </div>
             <span className="text-xl font-extrabold text-slate-900 tracking-tight">
-              Hire<span className="text-brand-600">Loop</span>
+              Joven<span className="text-brand-600">tra</span>
             </span>
           </Link>
 
@@ -198,15 +199,18 @@ export const DashboardLayout: React.FC = () => {
             <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
               <Briefcase className="w-4 h-4" />
             </div>
-            <span className="text-lg font-extrabold text-slate-900">HireLoop</span>
+            <span className="text-lg font-extrabold text-slate-900">Joventra</span>
           </Link>
 
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </header>
 
         {/* Mobile Slide-out Drawer */}

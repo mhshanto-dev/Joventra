@@ -1,5 +1,5 @@
 import React from 'react';
-import { JOB_CATEGORIES, JOB_TYPES } from '../../../../Joventra/src/constants/statuses';
+
 import { Filter, RotateCcw, DollarSign, MapPin, Briefcase, Globe } from 'lucide-react';
 
 interface JobFiltersProps {

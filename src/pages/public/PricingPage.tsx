@@ -290,7 +290,7 @@ export const PricingPage: React.FC = () => {
         <div className="text-left space-y-1">
           <h4 className="text-sm font-bold text-slate-900">14-Day Money-Back Guarantee</h4>
           <p className="text-xs text-slate-600">
-            Try any paid tier risk-free. If HireLoop does not accelerate your pipeline within 14 days, receive a complete refund.
+            Try any paid tier risk-free. If Joventra does not accelerate your pipeline within 14 days, receive a complete refund.
           </p>
         </div>
       </div>

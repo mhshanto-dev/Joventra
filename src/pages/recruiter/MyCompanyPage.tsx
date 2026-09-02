@@ -162,7 +162,7 @@ export const MyCompanyPage: React.FC = () => {
               </p>
               <p className="text-xs opacity-80">
                 {company.status === 'approved'
-                  ? 'Your company is verified and visible on the public HireLoop directory.'
+                  ? 'Your company is verified and visible on the public Joventra directory.'
                   : company.status === 'pending'
                   ? 'Your registration is under admin review. You can still post jobs!'
                   : 'Your company verification was declined. Please contact support.'}

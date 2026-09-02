@@ -114,7 +114,9 @@ export const AdminPaymentsPage: React.FC = () => {
 
         {isLoading ? (
           <div className="p-8 space-y-4">
-            {[1, 2, 3].map((n) => <div key={n} className="h-16 bg-slate-100 rounded-2xl animate-pulse" />}
+            {[1, 2, 3].map((n) => (
+              <div key={n} className="h-16 bg-slate-100 rounded-2xl animate-pulse" />
+            ))}
           </div>
         ) : payments.length === 0 ? (
           <div className="p-12 text-center text-slate-400 text-xs">

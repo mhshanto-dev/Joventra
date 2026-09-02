@@ -16,24 +16,24 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: (() => {
     try {
-      const saved = localStorage.getItem('hireloop_user');
+      const saved = localStorage.getItem('Joventra_user');
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
     }
   })(),
-  token: localStorage.getItem('hireloop_token'),
-  isAuthenticated: !!localStorage.getItem('hireloop_token'),
+  token: localStorage.getItem('Joventra_token'),
+  isAuthenticated: !!localStorage.getItem('Joventra_token'),
   isLoading: true,
 
   setAuth: (user: User, token: string) => {
-    localStorage.setItem('hireloop_token', token);
-    localStorage.setItem('hireloop_user', JSON.stringify(user));
+    localStorage.setItem('Joventra_token', token);
+    localStorage.setItem('Joventra_user', JSON.stringify(user));
     set({ user, token, isAuthenticated: true, isLoading: false });
   },
 
   setUser: (user: User) => {
-    localStorage.setItem('hireloop_user', JSON.stringify(user));
+    localStorage.setItem('Joventra_user', JSON.stringify(user));
     set({ user });
   },
 
@@ -43,14 +43,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     } catch (e) {
       // Ignore errors on logout
     } finally {
-      localStorage.removeItem('hireloop_token');
-      localStorage.removeItem('hireloop_user');
+      localStorage.removeItem('Joventra_token');
+      localStorage.removeItem('Joventra_user');
       set({ user: null, token: null, isAuthenticated: false, isLoading: false });
     }
   },
 
   fetchCurrentUser: async () => {
-    const token = localStorage.getItem('hireloop_token');
+    const token = localStorage.getItem('Joventra_token');
     if (!token) {
       set({ user: null, isAuthenticated: false, isLoading: false });
       return;
@@ -61,7 +61,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       const response = await apiClient.get('/auth/me');
       if (response.data.success && response.data.data?.user) {
         const user = response.data.data.user;
-        localStorage.setItem('hireloop_user', JSON.stringify(user));
+        localStorage.setItem('Joventra_user', JSON.stringify(user));
         set({ user, isAuthenticated: true, isLoading: false });
       } else {
         get().logout();

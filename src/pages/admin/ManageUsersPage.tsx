@@ -88,7 +88,7 @@ export const ManageUsersPage: React.FC = () => {
             Manage Accounts ({pagination.total})
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
-            Search, moderate, change roles, or suspend user access across the HireLoop platform.
+            Search, moderate, change roles, or suspend user access across the Joventra platform.
           </p>
         </div>
       </div>
@@ -136,7 +136,9 @@ export const ManageUsersPage: React.FC = () => {
       <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
         {isLoading ? (
           <div className="p-8 space-y-4">
-            {[1, 2, 3, 4].map((n) => <div key={n} className="h-16 bg-slate-100 rounded-2xl animate-pulse" />}
+            {[1, 2, 3, 4].map((n) => (
+              <div key={n} className="h-16 bg-slate-100 rounded-2xl animate-pulse" />
+            ))}
           </div>
         ) : users.length === 0 ? (
           <div className="p-12 text-center text-slate-400 text-xs">
