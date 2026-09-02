@@ -36,6 +36,7 @@ import { RecruiterSettingsPage } from './pages/recruiter/RecruiterSettingsPage';
 // Admin Pages
 import { AdminHomePage } from './pages/admin/AdminHomePage';
 import { ManageUsersPage } from './pages/admin/ManageUsersPage';
+import { ManageCompaniesPage } from './pages/admin/ManageCompaniesPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -92,7 +93,7 @@ export default function App() {
         <Route path="/dashboard/admin" element={<DashboardLayout />}>
           <Route index element={<AdminHomePage />} />
           <Route path="users" element={<ManageUsersPage />} />
-          <Route path="companies" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Companies</div>} />
+          <Route path="companies" element={<ManageCompaniesPage />} />
           <Route path="jobs" element={<div className="p-8 text-center text-slate-500 font-bold">Manage Jobs</div>} />
           <Route path="payments" element={<div className="p-8 text-center text-slate-500 font-bold">Payments & Subscriptions</div>} />
           <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Admin Settings</div>} />
