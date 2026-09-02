@@ -20,6 +20,7 @@ import { RegisterPage } from './pages/auth/RegisterPage';
 import { SeekerHomePage } from './pages/seeker/SeekerHomePage';
 import { SeekerJobsPage } from './pages/seeker/SeekerJobsPage';
 import { SavedJobsPage } from './pages/seeker/SavedJobsPage';
+import { ApplicationsPage } from './pages/seeker/ApplicationsPage';
 
 export default function App() {
   const { fetchCurrentUser } = useAuthStore();
@@ -52,7 +53,7 @@ export default function App() {
           <Route index element={<SeekerHomePage />} />
           <Route path="jobs" element={<SeekerJobsPage />} />
           <Route path="saved" element={<SavedJobsPage />} />
-          <Route path="applications" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Applications</div>} />
+          <Route path="applications" element={<ApplicationsPage />} />
           <Route path="billing" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Billing</div>} />
           <Route path="settings" element={<div className="p-8 text-center text-slate-500 font-bold">Seeker Settings</div>} />
         </Route>
