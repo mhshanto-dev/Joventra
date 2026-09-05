@@ -56,8 +56,10 @@ export const LoginPage: React.FC = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Redirect to backend Google OAuth endpoint
-    window.location.href = `${import.meta.env.VITE_API_URL?.replace('/api', '')}/api/auth/google`;
+    // Build the backend base URL by stripping /api from VITE_API_URL
+    const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    const serverBase = apiBase.replace(/\/api\/?$/, '');
+    window.location.href = `${serverBase}/api/auth/google`;
   };
 
   const handleLogoClick = () => {
@@ -74,10 +76,29 @@ export const LoginPage: React.FC = () => {
     { role: 'Recruiter', email: 'sarah@techcorp.io', password: 'password123', color: 'purple' },
   ];
 
-  const handleQuickLogin = (demoEmail: string, demoPass: string) => {
+  const handleQuickLogin = async (demoEmail: string, demoPass: string) => {
     setEmail(demoEmail);
     setPassword(demoPass);
-    toast.info('Credentials filled! Click Sign In to continue.');
+    // Auto-submit the login form with the demo credentials
+    try {
+      setIsLoading(true);
+      const response = await apiClient.post('/auth/login', { email: demoEmail, password: demoPass });
+      if (response.data.success) {
+        const { token, user } = response.data.data;
+        setAuth(user, token);
+        toast.success(`Welcome back, ${user.name}! 🎉`);
+        const from = (location.state as any)?.from?.pathname;
+        if (from) {
+          navigate(from, { replace: true });
+        } else {
+          navigate(`/dashboard/${user.role}`, { replace: true });
+        }
+      }
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Demo login failed. Please try manually.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCopy = (text: string, key: string) => {

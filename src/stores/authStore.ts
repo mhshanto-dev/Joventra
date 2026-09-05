@@ -10,7 +10,7 @@ interface AuthState {
   setAuth: (user: User, token: string) => void;
   setUser: (user: User) => void;
   logout: () => Promise<void>;
-  fetchCurrentUser: () => Promise<void>;
+  fetchCurrentUser: () => Promise<boolean>;
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({
@@ -53,7 +53,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const token = localStorage.getItem('Joventra_token');
     if (!token) {
       set({ user: null, isAuthenticated: false, isLoading: false });
-      return;
+      return false;
     }
 
     try {
@@ -63,11 +63,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         const user = response.data.data.user;
         localStorage.setItem('Joventra_user', JSON.stringify(user));
         set({ user, isAuthenticated: true, isLoading: false });
+        return true;
       } else {
-        get().logout();
+        await get().logout();
+        return false;
       }
     } catch (error) {
-      get().logout();
+      await get().logout();
+      return false;
     }
   },
 }));

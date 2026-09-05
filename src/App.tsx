@@ -15,6 +15,7 @@ import { CompanyProfilePage } from './pages/public/CompanyProfilePage';
 import { PricingPage } from './pages/public/PricingPage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
+import { AuthCallbackPage } from './pages/auth/AuthCallbackPage';
 import { NotFoundPage } from './pages/public/NotFoundPage';
 
 // Seeker Pages
@@ -66,6 +67,9 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
+
+      {/* Google OAuth callback — must be outside PublicOnlyRoute */}
+      <Route path="/auth/callback" element={<AuthCallbackPage />} />
 
       {/* Seeker Dashboard Routes */}
       <Route element={<ProtectedRoute allowedRoles={['seeker']} />}>
