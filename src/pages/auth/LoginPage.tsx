@@ -21,8 +21,6 @@ export const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
-  const [adminClickCount, setAdminClickCount] = useState(0);
-  const [showAdminCreds, setShowAdminCreds] = useState(false);
 
   const { setAuth } = useAuthStore();
   const navigate = useNavigate();
@@ -62,18 +60,12 @@ export const LoginPage: React.FC = () => {
     window.location.href = `${serverBase}/api/auth/google`;
   };
 
-  const handleLogoClick = () => {
-    const next = adminClickCount + 1;
-    setAdminClickCount(next);
-    if (next >= 5) {
-      setShowAdminCreds(prev => !prev);
-      setAdminClickCount(0);
-    }
-  };
+
 
   const demoAccounts = [
     { role: 'Seeker', email: 'alex@example.com', password: 'password123', color: 'emerald' },
     { role: 'Recruiter', email: 'sarah@techcorp.io', password: 'password123', color: 'purple' },
+    { role: 'Admin', email: 'admin@joventra.com', password: 'admin123', color: 'rose' },
   ];
 
   const handleQuickLogin = async (demoEmail: string, demoPass: string) => {
@@ -117,7 +109,6 @@ export const LoginPage: React.FC = () => {
           <Link to="/" className="inline-flex items-center gap-2.5">
             <div
               className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-blue-400 flex items-center justify-center text-white shadow-md shadow-brand-500/20 cursor-pointer select-none"
-              onClick={handleLogoClick}
             >
               <Briefcase className="w-5 h-5" />
             </div>
@@ -159,7 +150,7 @@ export const LoginPage: React.FC = () => {
           <div className="px-4 py-2.5 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2">
             <ShieldCheck className="w-3.5 h-3.5 text-brand-500" />
             <p className="text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-              Demo Accounts — Click "Use" to fill form
+              Demo Accounts — Click "Use" to Login
             </p>
           </div>
           <div className="p-3 space-y-2">
@@ -195,35 +186,6 @@ export const LoginPage: React.FC = () => {
               </div>
             ))}
 
-            {/* Secret Admin Credentials — only shown after 5 logo clicks */}
-            {showAdminCreds && (
-              <div className="bg-rose-50 dark:bg-rose-900/20 rounded-xl border border-rose-200 dark:border-rose-800 p-3 flex items-center justify-between gap-3 animate-fade-in">
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5 mb-0.5">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Admin</p>
-                    <span className="text-[9px] bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400 px-1.5 py-0.5 rounded-full font-bold">PRIVATE</span>
-                  </div>
-                  <p className="text-xs font-mono text-slate-700 dark:text-slate-200 truncate">admin@joventra.com</p>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <p className="text-xs font-mono text-slate-500 dark:text-slate-400">admin123</p>
-                    <button
-                      type="button"
-                      onClick={() => handleCopy('admin@joventra.com / admin123', 'admin')}
-                      className="p-0.5 rounded text-slate-400 hover:text-rose-500 transition-colors"
-                    >
-                      {copied === 'admin' ? <CheckCheck className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
-                    </button>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => { handleQuickLogin('admin@joventra.com', 'admin123'); setShowAdminCreds(false); }}
-                  className="flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold bg-rose-600 hover:bg-rose-700 text-white transition-colors"
-                >
-                  Use
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
