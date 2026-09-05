@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '../../lib/api-client';
 import { User, Role } from '../../types';
 import { formatRelativeDate } from '../../lib/utils';
+import { useAuthStore } from '../../stores/authStore';
 import { toast } from 'sonner';
 import { 
   Users, 
@@ -18,6 +19,7 @@ import {
 } from 'lucide-react';
 
 export const ManageUsersPage: React.FC = () => {
+  const { user: currentUser } = useAuthStore();
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('All');
   const [statusFilter, setStatusFilter] = useState('All');
@@ -224,13 +226,23 @@ export const ManageUsersPage: React.FC = () => {
                         {u.isActive ? <UserX className="w-3.5 h-3.5" /> : <UserCheck className="w-3.5 h-3.5" />}
                       </button>
 
-                      <button
-                        onClick={() => handleDeleteUser(u._id || u.id)}
-                        className="p-2 rounded-xl border border-rose-200 text-rose-600 hover:bg-rose-50 transition-colors"
-                        title="Delete User"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                      {(() => {
+                        const isSelf = (currentUser?._id || currentUser?.id) === (u._id || u.id);
+                        return (
+                          <button
+                            onClick={() => handleDeleteUser(u._id || u.id)}
+                            disabled={isSelf}
+                            className={`p-2 rounded-xl border transition-colors ${
+                              isSelf
+                                ? 'border-slate-200 text-slate-300 dark:border-slate-800 dark:text-slate-600 cursor-not-allowed opacity-50'
+                                : 'border-rose-200 text-rose-600 hover:bg-rose-50 dark:border-rose-900/30 dark:hover:bg-rose-950/40'
+                            }`}
+                            title={isSelf ? 'Cannot delete your own account' : 'Delete User'}
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        );
+                      })()}
                     </td>
 
                   </tr>
